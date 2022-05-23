@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Student Form</title>
+
+
+  <script src="../../jquery/jquery-3.6.0.js"></script>
+  <script src="../../jq/jquery-ui.min.js"></script>
+</head>
+
+
+<body>
+  <!-- Survey form header action="processForm" method="post" id="form-->
+  <h5 class="survey-form">Survey Form</h5>
+  <div *ngIf="isDataAvailable">
+    <form #surveyForm="ngForm" id="surveyform" action="#" id="form" class="w3-container w3-light-grey w3-text-black "
+      autocomplete="on">
+
+      <div>
+        <strong>StudentId: <span class="required">*</span> </strong>
+        <input readonly ngModel #studentid="ngModel" id="studentid" class="w3-text " name="studentid" autofocus
+          type="text" size="25 " placeholder={{survey.id}} required>
+      </div>
+
+      <div>
+        <strong>Firstname: <span class="required">*</span> </strong>
+        <input readonly ngModel #firstname="ngModel" id="firstname" class="w3-text " name="firstname" autofocus
+          type="text" size="25 " placeholder={{survey.firstName}} required>
+      </div>
+
+      <div>
+        <strong>Lastname: <span class="required">*</span> </strong>
+        <input readonly ngModel #lastname="ngModel" id="lastname" class="w3-text " name="lastname" required autofocus
+          type="text" size="25 " placeholder={{survey.lastName}} required />
+      </div>
+
+      <div>
+        <strong>Street address: <span class="required">*</span> </strong><br />
+        <textarea readonly ngModel #address="ngModel" id="address" name="address" rows="5 " cols="40 "
+          placeholder={{survey.address}} required></textarea>
+      </div>
+
+      <div>
+        <strong>City: <span class="required">*</span></strong>
+        <input readonly ngModel #city="ngModel" id="city" name="city" type="text" size="25 " placeholder={{survey.city}}
+          required />
+        <!-- <input name="city " type="text " size="25 " placeholder="city " /> -->
+      </div>
+
+      <div>
+        <strong>State: <span class="required">*</span> </strong>
+        <input readonly ngModel #state="ngModel" id="state" name="state" type="text" size="25 "
+          placeholder={{survey.states}} required />
+        <!-- <input name="state " type="text " size="25 " placeholder="state " /> -->
+      </div>
+
+      <div>
+        <strong>Zip code: <span class="required">*</span></strong>
+        <input readonly ngModel #zip="ngModel" id="zip" name="zip" type="text" size="25 " placeholder={{survey.zip}}
+          required />
+        <span id="validateZip" class="invalidzip"></span>
+
+      </div>
+
+      <div>
+        <strong>Telephone number:<span class="required ">*</span></strong>
+        <input readonly ngModel #phone="ngModel" type="tel" id="phone " name="phone" placeholder={{survey.telephone}}
+          required />
+      </div>
+
+      <div>
+        <strong>Email:<span class="required ">*</span></strong>
+        <input readonly ngModel #email="ngModel" id="email" name="email" type="email" size="25 "
+          placeholder={{survey.email}} required />
+      </div>
+
+      <div>
+        <strong>Survey date:<span class="required ">*</span></strong>
+        <input readonly ngModel #date="ngModel" name="date" type="text" size="25" placeholder={{survey.surveyDate}}
+          required />
+      </div>
+
+      <!-- checkboxes -->
+      <div>
+        <strong><label for="likemostbox">What do you like most about GMU?</label></strong><br>
+        <div *ngFor="let liked of like">
+          <input class="w3-check" name="likedmost" type="checkbox" [checked]="liked.selected" disabled>
+          <label> {{liked.name}}</label>
+        </div>
+      </div>
+
+      <div>
+        <!-- radio buttons  -->
+        <strong>How they became interested in the university: <span class="required">*</span></strong><br /> <label>
+          <input disabled [(ngModel)]="survey.interested" id="radiobutton" class="w3-radio" name="interested"
+            type="radio" value="Friends" />
+          Friends
+        </label><br /> <label>
+          <input disabled [(ngModel)]="survey.interested" id="radiobutton1" class="w3-radio" name="interested"
+            type="radio" value="Television" />
+          Television </label><br />
+        <label>
+          <input disabled [(ngModel)]="survey.interested" id="radiobutton2" class="w3-radio" name="interested"
+            type="radio" value="Internet" />
+          Internet </label><br />
+        <label>
+          <input disabled [(ngModel)]="survey.interested" id="radiobutton3" class="w3-radio " name="interested"
+            type="radio" value="Other" />
+          Other </label><br />
+      </div>
+
+      <!-- School recommendation  -->
+      <div style="padding-bottom: 20px; ">
+        <strong>
+          Recommend this school to other:
+        </strong>
+        <select [(ngModel)]="survey.recommend" name="recommend" id="recommend">
+          <option disabled value="Very Likely">Very Likely</option>
+          <option disabled value="Likely">Likely</option>
+          <option disabled value="Unlikely">Unlikely</option>
+        </select>
+      </div>
+
+      <div style="padding-bottom: 20px;">
+        <button (click)="return()">Return to home page</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+
+</html>

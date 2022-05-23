@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Student Form</title>
+
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+
+    <!-- <link rel="stylesheet" href="../../jq/jquery-ui.css" type="text/css" /> -->
+    <script src="../../jquery/jquery-3.6.0.js"></script>
+    <script src="../../jq/jquery-ui.min.js"></script>
+</head>
+
+
+<body>
+    <br>
+    <br>
+    <!-- Survey form header action="processForm" method="post" id="form-->
+    <h5 class="survey-form">Survey Form</h5>
+
+    <form #surveyForm="ngForm" id="surveyform" action="#"
+        (ngSubmit)="surveyForm.form.valid && submitSurvey(surveyForm.value)" id="form"
+        class=" w3-container w3-light-grey w3-text-black " autocomplete="on">
+        <div id="error"></div>
+        <!-- required field note  -->
+        <div style="padding-bottom: 20px; font-weight: bold;">
+            Note: <span class="required ">*</span> Required field
+        </div>
+
+        <!-- <br> -->
+        <div *ngIf="firstname.invalid && (surveyForm.submitted)" class="alert-danger">
+            <div [hidden]="!firstname.errors.required">
+                Firstname is required.
+            </div>
+        </div>
+
+        <div>
+            <strong>Firstname: <span class="required">*</span> </strong>
+            <input ngModel #firstname="ngModel" id="firstname" class="w3-text " name="firstname" autofocus type="text"
+                size="25 " placeholder="firstname" required>
+        </div>
+
+        <div *ngIf="lastname.invalid && (surveyForm.submitted)" class="alert-danger">
+            <div [hidden]="!lastname.errors.required">
+                Lastname is required.
+            </div>
+        </div>
+
+        <div>
+            <strong>Lastname: <span class="required">*</span> </strong>
+            <input ngModel #lastname="ngModel" id="lastname" class="w3-text " name="lastname" required autofocus
+                type="text" size="25 " placeholder="lastname" required />
+        </div>
+
+        <div *ngIf="address.invalid && (surveyForm.submitted)" class="alert-danger">
+            <div [hidden]="!address.errors.required">
+                address is required.
+            </div>
+        </div>
+        <div>
+            <strong>Street address: <span class="required">*</span> </strong><br />
+            <textarea ngModel #address="ngModel" id="address" name="address" rows="5 " cols="40 " placeholder="address"
+                required></textarea>
+        </div>
+
+        <div *ngIf="city.invalid && (surveyForm.submitted)" class="alert-danger">
+            <div [hidden]="!city.errors.required">
+                city is required.
+            </div>
+        </div>
+        <div>
+            <strong>City: <span class="required">*</span></strong>
+            <input ngModel #city="ngModel" id="city" name="city" type="text" size="25 " placeholder="city" required />
+            <!-- <input name="city " type="text " size="25 " placeholder="city " /> -->
+        </div>
+
+        <div *ngIf="state.invalid && (surveyForm.submitted)" class="alert-danger">
+            <div [hidden]="!state.errors.required">
+                state is required.
+            </div>
+        </div>
+        <div>
+            <strong>State: <span class="required">*</span> </strong>
+            <input ngModel #state="ngModel" id="state" name="state" type="text" size="25 " placeholder="state"
+                required />
+            <!-- <input name="state " type="text " size="25 " placeholder="state " /> -->
+        </div>
+
+        <div *ngIf="zip.invalid && (surveyForm.submitted)" class="alert-danger">
+            <div [hidden]="!zip.errors.required">
+                zip code is required.
+            </div>
+        </div>
+        <div>
+            <strong>Zip code: <span class="required">*</span></strong>
+            <input ngModel #zip="ngModel" id="zip" name="zip" type="text" size="25 " placeholder="zip-code" required />
+            <span id="validateZip" class="invalidzip"></span>
+
+        </div>
+
+        <div *ngIf="phone.invalid && (surveyForm.submitted)" class="alert-danger">
+            <div [hidden]="!phone.errors.required">
+                phone number is required.
+            </div>
+        </div>
+        <div>
+            <strong>Telephone number:<span class="required ">*</span></strong>
+            <input ngModel #phone="ngModel" type="tel" id="phone " name="phone" placeholder="(###)-(###)-(####) "
+                required />
+
+        </div>
+
+        <div *ngIf="email.invalid && (surveyForm.submitted)" class="alert-danger">
+            <div [hidden]="!email.errors.required">
+                Email is required.
+            </div>
+        </div>
+        <div>
+            <strong>Email:<span class="required ">*</span></strong>
+            <input ngModel #email="ngModel" id="email" name="email" type="email" size="25 "
+                placeholder="name@domain.com " required />
+        </div>
+
+        <div *ngIf="date.invalid && (surveyForm.submitted)" class="alert-danger">
+            <div [hidden]="!date.errors.required">
+                Survey date is required.
+            </div>
+        </div>
+        <div>
+            <strong>Survey date:<span class="required ">*</span></strong>
+            <input ngModel #date="ngModel" name="date" type="date" size="25 " placeholder="mm-dd-yyyy " required />
+        </div>
+
+        <!-- checkboxes -->
+        <label for="likemostbox">What do you like most about GMU?</label><br>
+        <div *ngFor="let liked of like">
+            <input class="w3-check" name="likedmost" type="checkbox" [(ngModel)]="liked.selected">
+            <label> {{liked.name}}</label>
+        </div>
+
+        <!-- radio buttons  -->
+        <p>
+            <strong>How they became interested in the university: <span class="required">*</span></strong><br /> <label>
+                <input ngModel id="radiobutton" class="w3-radio" name="interested" type="radio" value="Friends" />
+                Friends
+            </label><br /> <label>
+                <input ngModel id="radiobutton1" class="w3-radio" name="interested" type="radio" value="Television" />
+                Television </label><br />
+            <label>
+                <input ngModel id="radiobutton2" class="w3-radio" name="interested" type="radio" value="Internet" />
+                Internet </label><br />
+            <label>
+                <input ngModel id="radiobutton3" class="w3-radio " name="interested" type="radio" value="Other" />
+                Other </label><br />
+        </p>
+
+        <!-- School recommendation  -->
+        <div style="padding-bottom: 20px; ">
+            <strong>
+                Recommend this school to other:
+            </strong>
+            <select ngModel name="recommend" id="recommend">
+                <option value="Very Likely" selected>Very Likely</option>
+                <option value="Likely">Likely</option>
+                <option value="Unlikely">Unlikely</option>
+            </select>
+        </div>
+
+        <!-- submit and reset button -->
+        <div style="padding-bottom: 20px;">
+            <button type="submit" id="submit" type="submit">Submit Student Survey</button>
+            <button (click)="clearSurvey()">Cancel</button>
+        </div>
+
+    </form>
+
+
+</body>
+
+</html>

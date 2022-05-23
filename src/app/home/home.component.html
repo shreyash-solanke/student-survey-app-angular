@@ -1,0 +1,22 @@
+<!-- <nav>
+    <ul>
+      <li><a routerLink="/survey" routerLinkActive="active">Survey Form</a></li>
+      <li><a routerLink="/all" routerLinkActive="active">All Survey</a></li>
+    </ul>
+</nav> -->
+
+<mat-tab-group>
+  <mat-tab label="Home">
+    <h1>Welcome to home page!</h1>
+    <h2>
+      <li> Click on Survey tab to fill the survey form </li>
+      <li> Click on All survey tab to view all surveys!</li>
+    </h2>
+  </mat-tab>
+  <mat-tab label="Survey Form">
+    <app-survey></app-survey>
+  </mat-tab>
+  <mat-tab label="All Survey">
+    <app-all-surveys></app-all-surveys>
+  </mat-tab>
+</mat-tab-group>

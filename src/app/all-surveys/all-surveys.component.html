@@ -1,0 +1,13 @@
+
+<table id="surveys">
+    <tr>
+        <th>Student Id</th>
+
+    </tr>
+
+    <tr *ngFor="let survey of allSurveys">
+      <td>
+       <a href="completedsurvey?id={{survey}}">{{ survey }}</a>
+      </td>
+    </tr>
+  </table>
